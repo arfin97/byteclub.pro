@@ -1,1 +1,666 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteClub - Level Up Your Software Engineering Career</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .promo-banner {
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .value-prop {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .value-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin: 20px 0;
+        }
+
+        .value-card h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .cta-section {
+            background-color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .product-section {
+            padding: 80px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--gray);
+            margin-right: 10px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features {
+            padding: 80px 0;
+            background-color: #f1f5f9;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+        }
+
+        .testimonial-role {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .faq {
+            padding: 80px 0;
+            background-color: #f1f5f9;
+        }
+
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            color: var(--gray);
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 50px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="promo-banner">
+    🎉 ENDING SOON: Save 50% on The "5 Habits of Senior Software Engineer" PDF today! 🎉
+</div>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">ByteClub</div>
+            <div class="nav-links">
+                <a href="#courses">Courses</a>
+                <a href="#newsletter">Newsletter</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="#login" class="btn btn-outline">Login</a>
+                <a href="#signup" class="btn btn-primary">Sign Up</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Level Up Your Software Engineering Career</h1>
+        <p>Learn the exact strategies I used to go from a fresher to a senior software engineer and help 100+ students ace their CS careers.</p>
+        <a href="#purchase" class="btn btn-primary">🔑 Access for ৳400</a>
+    </div>
+</section>
+
+<section class="value-prop">
+    <div class="container">
+        <div class="value-card">
+            <h2>Learn from Arfin, a software engineering expert with 20K+ followers</h2>
+            <p>The exact system I used to master software engineering principles and help <span class="highlight">100+ successful students</span> launch their careers.</p>
+            <a href="#purchase" class="btn btn-primary">🔑 Access for ৳400</a>
+        </div>
+
+        <div class="value-card">
+            <h2>Join ByteClub Weekly Newsletter</h2>
+            <p>Get free weekly insights on tech news, programming tips, and career advice delivered straight to your inbox.</p>
+            <a href="#newsletter" class="btn btn-outline">Subscribe For Free</a>
+        </div>
+    </div>
+</section>
+
+<section class="product-section" id="courses">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Courses & Resources</h2>
+            <p>Exclusive content to help you become a better software engineer</p>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">5 Habits PDF</div>
+                <div class="product-content">
+                    <h3 class="product-title">5 Habits of Senior Software Engineer That You Must Know</h3>
+                    <p>Learn the exact habits and practices that distinguish senior engineers from the rest.</p>
+                    <div class="product-price">
+                        <span class="old-price">৳400</span>
+                    </div>
+                    <a href="#purchase" class="btn btn-primary" style="width: 100%;">Get Access Now</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Data Structures</div>
+                <div class="product-content">
+                    <h3 class="product-title">Data Structures & Algorithms Mastery</h3>
+                    <p>Master the fundamental DSA concepts that every successful engineer needs to know.</p>
+                    <div class="product-price">
+                        <span class="old-price">৳1500</span>৳950
+                    </div>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Coming Soon</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Interview Prep</div>
+                <div class="product-content">
+                    <h3 class="product-title">Tech Interview Preparation Bundle</h3>
+                    <p>Everything you need to prepare for and ace your software engineering interviews.</p>
+                    <div class="product-price">
+                        <span class="old-price">৳2000</span>৳1200
+                    </div>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="section-title">
+            <h2>What Will You Learn?</h2>
+            <p>Key insights from "5 Habits of Senior Software Engineer That You Must Know"</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>01: Code Architecture</h3>
+                <p>Learn how senior engineers approach designing scalable and maintainable code architectures that stand the test of time.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>02: Problem Solving</h3>
+                <p>Discover the systematic approach senior engineers use to break down complex problems into manageable solutions.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>03: Technical Communication</h3>
+                <p>Master the art of communicating technical concepts clearly to both technical and non-technical stakeholders.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>04: Continuous Learning</h3>
+                <p>Understand how senior engineers stay updated in the fast-changing tech landscape without getting overwhelmed.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>05: Mentorship</h3>
+                <p>Learn how to effectively mentor junior developers and build your reputation as a technical leader.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="#purchase" class="btn btn-primary">🔑 Access for ~~৳400~~ ৳200</a>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <div class="section-title">
+            <h2>I don't brag, but my students do...</h2>
+            <p>Here's what software engineers are saying about ByteClub</p>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "ByteClub completely transformed my approach to software engineering. The 5 habits PDF was a game-changer for my career path. I went from a mid-level engineer to leading my own team in just 6 months."
+                </div>
+                <div class="testimonial-author">Tasnim Ahmed</div>
+                <div class="testimonial-role">Senior Software Engineer at TechCorp</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "If I had to start my CS career from scratch, Arfin's guidance would be the first thing I'd seek out. The practical insights in his content are worth 10x what he charges."
+                </div>
+                <div class="testimonial-author">Rahul Khan</div>
+                <div class="testimonial-role">Full-stack Developer</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "As a CS student, I was completely lost about what to focus on. ByteClub Weekly newsletter and courses gave me the clarity and direction I needed. Now I'm confidently interviewing at top tech companies."
+                </div>
+                <div class="testimonial-author">Priya Chowdhury</div>
+                <div class="testimonial-role">Recent CS Graduate</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="#purchase" class="btn btn-primary">🔑 Access for ~~৳400~~ ৳200</a>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+    <div class="container">
+        <div class="section-title">
+            <h2>ByteClub Weekly Newsletter</h2>
+            <p>Join 20,000+ engineers receiving weekly insights, advice, and tech news</p>
+        </div>
+
+        <div class="value-card">
+            <h2>What you'll get in our free newsletter:</h2>
+            <ul style="list-style-position: inside; text-align: left; max-width: 600px; margin: 20px auto;">
+                <li>Tech industry trends and news summaries</li>
+                <li>Programming tips and tricks from experienced engineers</li>
+                <li>Career advice for CS students and professionals</li>
+                <li>Exclusive discounts on ByteClub resources</li>
+            </ul>
+            <div style="max-width: 500px; margin: 30px auto;">
+                <input type="email" placeholder="Your email address" style="width: 70%; padding: 12px; border: 1px solid #ccc; border-radius: 5px 0 0 5px;">
+                <button class="btn btn-primary" style="border-radius: 0 5px 5px 0; padding: 12px 20px;">Subscribe</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about ByteClub resources</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Who is this PDF for?</div>
+            <div class="faq-answer">This PDF is designed for CS students and mid-level engineers who want to understand the mindset and habits that distinguish senior software engineers, helping you accelerate your career path.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Why is learning these habits important?</div>
+            <div class="faq-answer">Technical skills alone won't advance your career. The habits, mindset, and approaches of senior engineers are what truly set them apart. This resource helps you develop these critical soft skills that most CS education ignores.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Who is Arfin? Why should I listen to you?</div>
+            <div class="faq-answer">Arfin is the founder of ByteClub with 20K+ followers across social platforms. He has helped 100+ students successfully navigate their software engineering careers and is known for practical, actionable advice that gets results.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How long will it take to see results?</div>
+            <div class="faq-answer">Many students report seeing immediate improvements in their approach to problems and code quality. For career advancement, most see significant progress within 3-6 months of applying these principles consistently.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Do I get lifetime access?</div>
+            <div class="faq-answer">Yes! Once you purchase the PDF, it's yours forever. You'll also receive any future updates to the content at no additional cost.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How is the newsletter different from the paid content?</div>
+            <div class="faq-answer">The newsletter provides weekly tips and industry updates for free, while the paid PDF offers a comprehensive, structured guide to the specific habits that will accelerate your engineering career.</div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready to Level Up Your Software Engineering Career?</h2>
+        <p>Join 100+ successful students who have transformed their approach to software engineering</p>
+        <a href="#purchase" class="btn btn-primary" style="margin-top: 20px;">🔑 Access for ~~৳400~~ ৳200</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>ByteClub</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#newsletter">Newsletter</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Connect</h3>
+                <ul class="footer-links">
+                    <li><a href="#twitter">Twitter</a></li>
+                    <li><a href="#linkedin">LinkedIn</a></li>
+                    <li><a href="#github">GitHub</a></li>
+                    <li><a href="#youtube">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; 2025 ByteClub. All rights reserved.
+        </div>
+    </div>
+</footer>
+</html>
